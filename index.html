@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unit-V: Advanced Functions & Modules</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        @page {
+            size: A4;
+            margin: 14mm 12mm 14mm 12mm;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1e293b;
+            line-height: 1.45;
+            font-size: 9.5pt;
+            background-color: #ffffff;
+        }
+        .header-card {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+        .header-card h1 {
+            margin: 0 0 4px 0;
+            font-size: 18pt;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .header-card .topics-subtitle {
+            font-size: 10pt;
+            color: #38bdf8;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .header-card .meta-bar {
+            font-size: 8.5pt;
+            color: #94a3b8;
+        }
+        .toc-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+        .toc-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 4px;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 20px;
+            font-size: 8.5pt;
+            color: #0284c7;
+        }
+        h2.section-title {
+            font-size: 13pt;
+            color: #0f172a;
+            border-bottom: 2px solid #0284c7;
+            padding-bottom: 4px;
+            margin-top: 18px;
+            margin-bottom: 12px;
+        }
+        h3.topic-title {
+            font-size: 10.5pt;
+            color: #0369a1;
+            margin-top: 14px;
+            margin-bottom: 6px;
+        }
+        .def-label { font-weight: 700; color: #0f172a; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0 10px 0;
+            font-size: 8.5pt;
+        }
+        th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            text-align: left;
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            font-weight: 700;
+        }
+        td {
+            padding: 5px 10px;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+        }
+        pre {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 3px solid #0284c7;
+            color: #0f172a;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 8.5pt;
+            line-height: 1.4;
+            margin: 6px 0 10px 0;
+            white-space: pre-wrap;
+        }
+        code {
+            font-family: monospace;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+        .note-box {
+            background-color: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 5px;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 8.5pt;
+            color: #0369a1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-card">
+        <h1>Unit-V</h1>
+        <div class="topics-subtitle">Advanced Function Topics • Functional Tools • Python Modules • Module Architecture</div>
+        <div class="meta-bar">Max Marks: 10 | Definitions · Examples · Clean Explanations · Program Code</div>
+    </div>
+
+    <div class="toc-card">
+        <div class="toc-title">Python Advanced Concepts Guide — Table of Contents</div>
+        <div class="toc-grid">
+            <div>1. Advanced Function Topics</div>
+            <div>&nbsp;&nbsp;1.1 Anonymous Function Lambda</div>
+            <div>&nbsp;&nbsp;1.2 Mapping Functions over Sequences: map</div>
+            <div>&nbsp;&nbsp;1.3 Functional Programming Tools: filter and reduce</div>
+            <div>&nbsp;&nbsp;1.4 List Comprehensions Revisited: Mappings</div>
+            <div>2. Modules</div>
+            <div>&nbsp;&nbsp;2.1 Python Program Architecture</div>
+            <div>&nbsp;&nbsp;2.2 Module Creation</div>
+            <div>&nbsp;&nbsp;2.3 Module Usage</div>
+            <div>&nbsp;&nbsp;2.4 Module Namespaces</div>
+            <div>&nbsp;&nbsp;2.5 Reloading Modules</div>
+            <div>&nbsp;&nbsp;2.6 Module Packages</div>
+            <div>&nbsp;&nbsp;2.7 Data Hiding in Modules</div>
+            <div>&nbsp;&nbsp;2.8 Enabling Future Language Features</div>
+            <div>&nbsp;&nbsp;2.9 Mixed Usage Modes</div>
+            <div>&nbsp;&nbsp;2.10 Changing the Module Search Path</div>
+            <div>&nbsp;&nbsp;2.11 The import as Extension</div>
+            <div>&nbsp;&nbsp;2.12 Relative Import Syntax</div>
+            <div>&nbsp;&nbsp;2.13 Module Design Concepts</div>
+        </div>
+    </div>
+
+    <h2 class="section-title">1. Advanced Function Topics</h2>
+
+    <h3 class="topic-title">1.1 Anonymous Function Lambda</h3>
+    <p><span class="def-label">Definition:</span> An anonymous function is a small function defined without a name using the <code>lambda</code> keyword. It can take any number of arguments, but can only evaluate and return a single expression.</p>
+    <pre># Syntax: lambda arguments: expression
+square = lambda x: x ** 2
+print(square(5))  # Output: 25
+
+add = lambda a, b, c: a + b + c
+print(add(2, 3, 4))  # Output: 9</pre>
+
+    <h3 class="topic-title">1.2 Mapping Functions over Sequences: map</h3>
+    <p><span class="def-label">Definition:</span> The <code>map()</code> function applies a specified function to each item of an iterable (such as a list or tuple) and returns a map object (an iterator) containing the results.</p>
+    <pre># Syntax: map(function, sequence)
+numbers = [1, 2, 3, 4, 5]
+doubled = list(map(lambda x: x * 2, numbers))
+print(doubled)  # Output: [2, 4, 6, 8, 10]</pre>
+
+    <h3 class="topic-title">1.3 Functional Programming Tools: filter and reduce</h3>
+    <p><span class="def-label">Definition:</span> Higher-order functional tools used to process sequences concisely.</p>
+    <ul>
+        <li><strong>filter(function, sequence):</strong> Constructs an iterator from sequence elements for which the function returns <code>True</code>.</li>
+        <li><strong>reduce(function, sequence):</strong> Imported from <code>functools</code>, applies a function of two arguments cumulatively to sequence items to reduce it to a single value.</li>
+    </ul>
+    <pre># filter example
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+print(evens)  # Output: [2, 4, 6, 8]
+
+# reduce example
+from functools import reduce
+nums = [1, 2, 3, 4]
+product = reduce(lambda x, y: x * y, nums)
+print(product)  # Output: 24 (1 * 2 * 3 * 4)</pre>
+
+    <h3 class="topic-title">1.4 List Comprehensions Revisited: Mappings</h3>
+    <p><span class="def-label">Definition:</span> List comprehensions provide a compact way to construct new lists by applying expressions and optional conditional filters over existing sequences, replacing <code>map()</code> and <code>filter()</code>.</p>
+    <pre>nums = [1, 2, 3, 4, 5]
+
+# Replacing map()
+squares = [x ** 2 for x in nums]
+print(squares)  # Output: [1, 4, 9, 16, 25]
+
+# Combining map() and filter()
+even_squares = [x ** 2 for x in nums if x % 2 == 0]
+print(even_squares)  # Output: [4, 16]</pre>
+
+    <h2 class="section-title">2. Modules</h2>
+
+    <h3 class="topic-title">2.1 Python Program Architecture</h3>
+    <p><span class="def-label">Definition:</span> Python program architecture refers to structuring an application into a top-level (main) execution script along with multiple reusable module files containing functions, classes, and variables.</p>
+
+    <h3 class="topic-title">2.2 Module Creation</h3>
+    <p><span class="def-label">Definition:</span> A module is created simply by saving Python code inside a file with a <code>.py</code> extension.</p>
+    <pre># Saved inside 'math_utils.py'
+def add(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+
+PI = 3.14159</pre>
+
+    <h3 class="topic-title">2.3 Module Usage</h3>
+    <p><span class="def-label">Definition:</span> A module is used in another Python script by importing it using the <code>import</code> or <code>from ... import</code> statement.</p>
+    <pre># Saved inside 'main.py'
+import math_utils
+
+print(math_utils.add(10, 5))       # Output: 15
+print(math_utils.multiply(4, 3))   # Output: 12
+print(math_utils.PI)               # Output: 3.14159</pre>
+
+    <h3 class="topic-title">2.4 Module Namespaces</h3>
+    <p><span class="def-label">Definition:</span> A module namespace is a dictionary mapping containing all global variables, functions, and classes defined within that module. It prevents variable name collisions.</p>
+    <pre>import math_utils
+
+# Accessing module attribute dictionary / names
+print(dir(math_utils))
+print(math_utils.__name__)  # Output: 'math_utils'</pre>
+
+    <h3 class="topic-title">2.5 Reloading Modules</h3>
+    <p><span class="def-label">Definition:</span> Imports occur only once per session. To reload a modified module dynamically during execution without restarting Python, use <code>importlib.reload()</code>.</p>
+    <pre>import importlib
+import math_utils
+
+# Re-executes the module source file code
+importlib.reload(math_utils)</pre>
+
+    <h3 class="topic-title">2.6 Module Packages</h3>
+    <p><span class="def-label">Definition:</span> A package is a directory containing module files along with a special <code>__init__.py</code> file, allowing hierarchical organization using dot notation.</p>
+    <pre># Directory Structure:
+# my_package/
+#    ├── __init__.py
+#    └── arithmetic.py
+
+from my_package.arithmetic import add
+print(add(5, 10))</pre>
+
+    <h3 class="topic-title">2.7 Data Hiding in Modules</h3>
+    <p><span class="def-label">Definition:</span> Attributes can be hidden from wildcard imports (<code>from module import *</code>) by prefixing them with a single underscore <code>_</code> or by explicitly setting the <code>__all__</code> list.</p>
+    <pre># my_module.py
+__all__ = ['public_func']  # Only public_func is exported on wildcard import
+
+def public_func():
+    return "Public"
+
+def _hidden_func():
+    return "Private/Hidden"</pre>
+
+    <h3 class="topic-title">2.8 Enabling Future Language Features</h3>
+    <p><span class="def-label">Definition:</span> The <code>__future__</code> module allows importing features introduced in future Python versions into current code for forward compatibility.</p>
+    <pre>from __future__ import print_function, division
+
+print(5 / 2)  # Output: 2.5 (True division)</pre>
+
+    <h3 class="topic-title">2.9 Mixed Usage Modes</h3>
+    <p><span class="def-label">Definition:</span> Checking <code>if __name__ == '__main__'</code> allows a file to act as both an imported library module and a standalone executable script.</p>
+    <pre>def calculate(x):
+    return x * 10
+
+if __name__ == '__main__':
+    # Runs only when executed directly, not when imported
+    print("Direct Execution Test:", calculate(5))</pre>
+
+    <h3 class="topic-title">2.10 Changing the Module Search Path</h3>
+    <p><span class="def-label">Definition:</span> Python searches for modules in directories listed in <code>sys.path</code>. Custom directory paths can be appended at runtime.</p>
+    <pre>import sys
+sys.path.append("/custom/path/to/modules")
+
+import my_custom_module</pre>
+
+    <h3 class="topic-title">2.11 The import as Extension</h3>
+    <p><span class="def-label">Definition:</span> Assigns an alias to an imported module or function to prevent name conflicts or shorten usage.</p>
+    <pre>import math as m
+from math import factorial as fact
+
+print(m.pi)    # Output: 3.141592653589793
+print(fact(5)) # Output: 120</pre>
+
+    <h3 class="topic-title">2.12 Relative Import Syntax</h3>
+    <p><span class="def-label">Definition:</span> Used inside package modules to import relative to the current module location using leading dots (<code>.</code> for current folder, <code>..</code> for parent folder).</p>
+    <pre># Inside my_package/string_utils.py
+from . import arithmetic         # Sibling module import
+from ..tools import formatter    # Parent directory module import</pre>
+
+    <h3 class="topic-title">2.13 Module Design Concepts</h3>
+    <p><span class="def-label">Definition:</span> Core principles for designing clean, scalable Python modules:</p>
+    <table>
+        <tr>
+            <th>Concept</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>High Cohesion</strong></td>
+            <td>A module should focus on a single, well-defined task domain.</td>
+        </tr>
+        <tr>
+            <td><strong>Low Coupling</strong></td>
+            <td>Modules should be independent to minimize inter-dependencies.</td>
+        </tr>
+        <tr>
+            <td><strong>Avoid Global State</strong></td>
+            <td>Minimize mutating global variables across module boundaries.</td>
+        </tr>
+        <tr>
+            <td><strong>Clean Public API</strong></td>
+            <td>Expose only necessary functions using <code>__all__</code> or <code>_</code> prefixes.</td>
+        </tr>
+    </table>
+
+    <div class="note-box">
+        <strong>Note:</strong> Practice each snippet in a Python interpreter. For module and package examples, ensure files are created in the appropriate directories and test both direct script execution and imported mode.
+    </div>
+
+</body>
+</html>
